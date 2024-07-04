@@ -1,0 +1,18 @@
+<div class="form-container">
+  <div class="form-group">
+    <label>姓名：</label>
+    <input pInputText [(ngModel)]="member.fName" />
+  </div>
+  <div class="form-group">
+    <label>地區：</label>
+    <p-dropdown [options]="dists" [(ngModel)]="member.fDist" placeholder="選擇地區"></p-dropdown>
+  </div>
+  <div class="form-group">
+    <label>性別：</label>
+    <div *ngFor="let gender of genders">
+      <p-radioButton name="gender" [(ngModel)]="member.fGender" [value]="gender.value" inputId="{{gender.value}}"></p-radioButton>
+      <label for="{{gender.value}}">{{ gender.label }}</label>
+    </div>
+  </div>
+  <p-button label="{{ isEdit ? '修改' : '新增' }}" (click)="saveMember()"></p-button>
+</div>

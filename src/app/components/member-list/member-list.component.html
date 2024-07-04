@@ -1,0 +1,29 @@
+<div>
+  <input type="text" pInputText [(ngModel)]="searchName" placeholder="姓名"/>
+  <p-button label="搜尋" [rounded]="true" (click)="search()"></p-button>
+</div>
+
+<p-table [value]="members" [paginator]="true" [rows]="pageSize" [totalRecords]="totalRecords" [lazy]="true"
+  (onLazyLoad)="loadMembers($event)" [(first)]="first">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>序號</th>
+      <th>姓名</th>
+      <th>地區</th>
+      <th>性別</th>
+      <th>操作</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-member>
+    <tr>
+      <td>1</td>
+      <td>{{ member.fName }}</td>
+      <td>{{ member.fDist }}</td>
+      <td>{{ member.fGender }}</td>
+      <td>
+        <p-button label="修改" [rounded]="true" severity="help" (click)="editMember(member.fId)"/>
+        <p-button label="刪除" [rounded]="true" severity="danger" (click)="deleteMember(member.fId)"/>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
